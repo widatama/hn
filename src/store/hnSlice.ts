@@ -35,6 +35,11 @@ const initialState: { items: HNItem[] } = {
 const hnSlice = createSlice({
   name: 'hn',
   initialState,
+  reducers: {
+    test(state) {
+      console.warn(state);
+    },
+  },
 });
 
 export default hnSlice;

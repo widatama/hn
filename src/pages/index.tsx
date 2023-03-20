@@ -1,11 +1,18 @@
 import Head from 'next/head';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { selectHnItems } from '@/store/hnSlice';
+import hnSlice, { selectHnItems } from '@/store/hnSlice';
 
 export default function Home() {
+  const dispatch = useDispatch();
   const hnItems = useSelector(selectHnItems);
+  const { test } = hnSlice.actions;
+
+  useEffect(() => {
+    dispatch(test());
+  }, [dispatch, test]);
+
   return (
     <>
       <Head>
