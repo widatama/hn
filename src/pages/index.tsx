@@ -1,17 +1,26 @@
 import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import hnSlice, { selectHnItems } from '@/store/hnSlice';
+import { useGetTopItemsQuery } from '@/store/api/hn';
+import type { HNItem } from '@/types/hn';
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const hnItems = useSelector(selectHnItems);
-  const { test } = hnSlice.actions;
+  const {
+    data: hnItems = [],
+    error,
+    isError,
+    isLoading,
+    isSuccess,
+  } = useGetTopItemsQuery({ limit: 30 });
 
-  useEffect(() => {
-    dispatch(test());
-  }, [dispatch, test]);
+  let content: React.ReactNode;
+
+  if (isLoading) {
+    content = <div>Loading</div>;
+  } else if (isSuccess) {
+    content = hnItems.map((hnItem: HNItem) => <div key={hnItem.id}>{hnItem.title}</div>);
+  } else if (isError) {
+    content = <div>{error.toString()}</div>;
+  }
 
   return (
     <>
@@ -19,9 +28,7 @@ export default function Home() {
         <title>HN</title>
       </Head>
       <main className="tw-bg-neutral-800 tw-text-white tw-h-screen tw-p-4">
-        {hnItems.map((hnItem) => (
-          <div key={hnItem.id}>{hnItem.title}</div>
-        ))}
+        {content}
       </main>
     </>
   );
