@@ -1,7 +1,7 @@
 type HNItemType = 'comment' | 'job' | 'poll' | 'pollopt' | 'story';
 
 // From https://github.com/HackerNews/API#items
-export interface HNItem {
+export interface RawHNItem {
   by: string;
   dead: boolean;
   deleted: boolean;
@@ -16,7 +16,12 @@ export interface HNItem {
   time: number; // Unix time
   title: string; // HTML
   type: HNItemType;
-  url: string;
+  url?: string;
+}
+
+export interface HNItem extends RawHNItem {
+  creatorUrl: string;
+  itemUrl: string;
 }
 
 // From https://github.com/HackerNews/API#users
