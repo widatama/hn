@@ -21,6 +21,7 @@ export interface RawHNItem {
 
 export interface HNItem extends RawHNItem {
   creatorUrl: string;
+  itemHostname?: string;
   itemUrl: string;
 }
 

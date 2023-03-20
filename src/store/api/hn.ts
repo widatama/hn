@@ -6,15 +6,24 @@ import type { HNItem, RawHNItem } from '@/types/hn';
 function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BASE_PATH): HNItem {
   const result: AugmentedHNItem = { ...hnItem };
 
-  const itemUrl = new URL(window.location.origin);
-  itemUrl.pathname = `${basePath}/item`;
-  itemUrl.searchParams.append('id', result.id);
-  result.itemUrl = itemUrl.href;
-
   const creatorUrl = new URL(window.location.origin);
   creatorUrl.pathname = `${basePath}/user`;
   creatorUrl.searchParams.append('id', result.by);
   result.creatorUrl = creatorUrl.href;
+
+  if (result.url) {
+    try {
+      const externalUrl = new URL(result.url);
+      result.itemHostname = externalUrl.hostname;
+    } catch (err) {
+      // URL error
+    }
+  }
+
+  const itemUrl = new URL(window.location.origin);
+  itemUrl.pathname = `${basePath}/item`;
+  itemUrl.searchParams.append('id', result.id);
+  result.itemUrl = itemUrl.href;
 
   return result;
 }

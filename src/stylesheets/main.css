@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply tw-bg-neutral-800 tw-text-neutral-300;
+  @apply tw-bg-neutral-800 tw-text-neutral-100;
 }
 
 #__next {

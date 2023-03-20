@@ -11,14 +11,26 @@ type HNItemCompProps = {
 };
 
 export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) {
-  const defaultClassNames = 'tw-text-neutral-100';
+  let hostname = null;
+  if (hnItem.itemHostname) {
+    hostname = (
+      <span className="tw-text-xs">
+        {' '}
+        ({hnItem.itemHostname})
+      </span>
+    );
+  }
+
   return (
-    <div className={clsx(className, defaultClassNames)}>
-      <h2>
-        <Link href={hnItem.url || hnItem.itemUrl}>
-          {hnItem.title}
-        </Link>
-      </h2>
+    <div className={clsx(className)}>
+      <div>
+        <h2 className="tw-inline-block">
+          <Link href={hnItem.url || hnItem.itemUrl}>
+            {hnItem.title}
+          </Link>
+        </h2>
+        {hostname}
+      </div>
       <div className="tw-text-xs tw-text-neutral-400">
         <span>
           {`${hnItem.score} points`}
