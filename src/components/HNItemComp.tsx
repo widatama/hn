@@ -9,7 +9,7 @@ type HNItemCompProps = {
   hnItem: HNItem;
 };
 
-export default function HNItemComp({ className, hnItem }: HNItemCompProps) {
+export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) {
   const defaultClassNames = 'tw-text-neutral-100';
   return (
     <div className={clsx(className, defaultClassNames)}>

@@ -1,8 +1,7 @@
 import Head from 'next/head';
 
-import HNItemComp from '@/components/HNItemComp';
+import HNItemList from '@/components/HNItemList';
 import { useGetTopItemsQuery } from '@/store/api/hn';
-import type { HNItem } from '@/types/hn';
 
 export default function Home() {
   const {
@@ -18,13 +17,7 @@ export default function Home() {
   if (isLoading) {
     content = <div>Loading</div>;
   } else if (isSuccess) {
-    content = hnItems.map((hnItem: HNItem) => (
-      <HNItemComp
-        className="tw-mb-3"
-        key={hnItem.id}
-        hnItem={hnItem}
-      />
-    ));
+    content = <HNItemList hnItems={hnItems} />;
   } else if (isError) {
     content = <div>{error.toString()}</div>;
   }
@@ -34,9 +27,12 @@ export default function Home() {
       <Head>
         <title>HN</title>
       </Head>
-      <main className="tw-bg-neutral-800 tw-text-white tw-h-full tw-p-4">
+      <div className="tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
+        <header className="tw-mt-4 tw-mb-6">
+          <h1 className="tw-font-bold tw-text-2xl">Hacker News Reader</h1>
+        </header>
         {content}
-      </main>
+      </div>
     </>
   );
 }

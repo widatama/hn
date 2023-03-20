@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply tw-bg-neutral-800 tw-text-neutral-300;
+}
+
+#__next {
+  @apply tw-min-h-screen;
+}
