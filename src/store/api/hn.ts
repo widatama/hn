@@ -8,7 +8,7 @@ const hnApi = createApi({
   endpoints: (builder) => ({
     getTopItems: builder.query({
       queryFn: async (arg, _queryApi, _extraOptions, fetchWithBQ) => {
-        const { limit } = arg;
+        const { limit, page } = arg;
         const topItemsResponse = await fetchWithBQ('/topstories.json');
 
         if (topItemsResponse.error) {
@@ -18,7 +18,7 @@ const hnApi = createApi({
         const itemIds = topItemsResponse.data as number[];
         const proms: Promise = [];
 
-        for (let count = 0; count < limit; count += 1) {
+        for (let count = ((page - 1) * limit); count < limit; count += 1) {
           proms.push(fetchWithBQ(`/item/${itemIds[count]}.json`));
         }
 

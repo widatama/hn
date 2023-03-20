@@ -7,7 +7,7 @@ export interface HNItem {
   deleted: boolean;
   descendants?: number;
   id: string;
-  kids: string[];
+  kids?: string[];
   parent?: string;
   parts?: string[];
   poll?: string;
