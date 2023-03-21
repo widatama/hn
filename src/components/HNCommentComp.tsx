@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Parser } from 'html-to-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import TimeAgo from 'react-timeago';
 
 import type { HNItem } from '@/types/hn';
@@ -13,6 +13,13 @@ type HNCommentCompProps = {
 
 export default function HNCommentComp({ className = '', hnComment }: HNCommentCompProps) {
   const content = hnComment.text ? Parser().parse(hnComment.text) : '';
+  const [collapsed, setCollapsed] = useState(false);
+
+  const contentBlock = collapsed ? null : (
+    <div className="hn-item-text">
+      {content}
+    </div>
+  );
 
   return (
     <div className={clsx(className)}>
@@ -25,11 +32,13 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
         <span>
           {' '}
           <TimeAgo date={hnComment.time * 1000} />
+          {' '}
         </span>
+        <button type="button" onClick={() => setCollapsed(!collapsed)}>
+          {`[${collapsed ? '+' : '-'}]`}
+        </button>
       </div>
-      <div className="hn-item-text">
-        {content}
-      </div>
+      {contentBlock}
     </div>
   );
 }
