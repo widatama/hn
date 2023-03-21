@@ -16,7 +16,8 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
       const externalUrl = new URL(result.url);
       result.itemHostname = externalUrl.hostname;
     } catch (err) {
-      // URL error
+      // result.url might not be valid, does not have to be handled
+      // result.itemHostname will be undefined
     }
   }
 
@@ -31,6 +32,32 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
 const hnApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://hacker-news.firebaseio.com/v0/' }),
   endpoints: (build) => ({
+    getItem: build.query({
+      query: (id) => ({ url: `/item/${id}.json` }),
+      transformResponse: (response: RawHNItem) => augmentHNItem(response),
+    }),
+    getItems: build.query({
+      queryFn: async (arg: string[], _queryApi, _extraOptions, fetchWithBQ) => {
+        const proms: Promise = [];
+
+        for (let count = 0; count < arg.length; count += 1) {
+          proms.push(fetchWithBQ(`item/${arg[count]}.json`));
+        }
+
+        try {
+          const responses = await Promise.allSettled(proms);
+          const result: HNItem[] = [];
+
+          responses.forEach((response) => {
+            result.push(augmentHNItem(response.value.data as RawHNItem));
+          });
+
+          return { data: result };
+        } catch (err) {
+          return { error: err as fetchBaseQueryError };
+        }
+      },
+    }),
     getTopItems: build.query({
       queryFn: async (arg, _queryApi, _extraOptions, fetchWithBQ) => {
         const { limit, page } = arg;
@@ -70,4 +97,9 @@ const hnApi = createApi({
 
 export default hnApi;
 
-export const { useGetTopItemsQuery, useGetUserQuery } = hnApi;
+export const {
+  useGetItemQuery,
+  useGetItemsQuery,
+  useGetTopItemsQuery,
+  useGetUserQuery,
+} = hnApi;

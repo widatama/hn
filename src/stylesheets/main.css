@@ -9,3 +9,11 @@ body {
 #__next {
   @apply tw-min-h-screen;
 }
+
+.hn-item-text p {
+  @apply tw-my-2;
+}
+
+.hn-item-text a {
+  @apply tw-underline;
+}
