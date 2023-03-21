@@ -4,7 +4,7 @@ import { fetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { HNItem, RawHNItem } from '@/types/hn';
 
 function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BASE_PATH): HNItem {
-  const result: AugmentedHNItem = { ...hnItem };
+  const result: HNItem = { ...hnItem };
 
   const creatorUrl = new URL(window.location.origin);
   creatorUrl.pathname = `${basePath}/user`;
@@ -30,8 +30,8 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
 
 const hnApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://hacker-news.firebaseio.com/v0/' }),
-  endpoints: (builder) => ({
-    getTopItems: builder.query({
+  endpoints: (build) => ({
+    getTopItems: build.query({
       queryFn: async (arg, _queryApi, _extraOptions, fetchWithBQ) => {
         const { limit, page } = arg;
         const topItemsResponse = await fetchWithBQ('/topstories.json');
@@ -61,10 +61,13 @@ const hnApi = createApi({
         }
       },
     }),
+    getUser: build.query({
+      query: (id) => ({ url: `/user/${id}.json` }),
+    }),
   }),
   reducerPath: 'hnApi',
 });
 
 export default hnApi;
 
-export const { useGetTopItemsQuery } = hnApi;
+export const { useGetTopItemsQuery, useGetUserQuery } = hnApi;

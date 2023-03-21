@@ -13,9 +13,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <div className="tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
         <header className="tw-mt-4 tw-mb-6">
-          <Link href="/">
-            <h1 className="tw-font-bold tw-text-2xl">Hacker News Reader</h1>
-          </Link>
+          <h1 className="tw-font-bold tw-text-2xl">
+            <Link href="/">
+              Hacker News Reader
+            </Link>
+          </h1>
         </header>
         <Component {...props.pageProps} />
       </div>
