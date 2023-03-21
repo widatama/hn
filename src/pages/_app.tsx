@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import Link from 'next/link';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -10,7 +11,14 @@ export default function App({ Component, pageProps }: AppProps) {
   /* eslint-disable react/jsx-props-no-spreading */
   return (
     <Provider store={store}>
-      <Component {...props.pageProps} />
+      <div className="tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
+        <header className="tw-mt-4 tw-mb-6">
+          <Link href="/">
+            <h1 className="tw-font-bold tw-text-2xl">Hacker News Reader</h1>
+          </Link>
+        </header>
+        <Component {...props.pageProps} />
+      </div>
     </Provider>
   );
   /* eslint-enable */
