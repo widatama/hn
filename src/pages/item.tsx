@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import HNItemComp from '@/components/HNItemComp';
 import HNCommentList from '@/components/HNCommentList';
-import { useGetItemQuery, useGetItemsQuery } from '@/store/api/hn';
+import { useGetItemQuery } from '@/store/api/hn';
 import type { HNItem } from '@/types/hn';
 
 export default function Item() {
@@ -17,13 +17,6 @@ export default function Item() {
     isLoading,
     isSuccess,
   } = useGetItemQuery(router.query.id || '');
-  const {
-    data: hnItemComments = [],
-    error: errorComment,
-    isError: isCommentError,
-    isLoading: isCommentLoading,
-    isSuccess: isCommentSuccess,
-  } = useGetItemsQuery(hnItem.kids || []);
 
   if (!('id' in router.query)) {
     return (
@@ -50,23 +43,13 @@ export default function Item() {
     content = <div>No such item</div>;
   }
 
-  let comment: React.ReactNode;
-
-  if (isCommentLoading) {
-    comment = <div>Loading</div>;
-  } else if (isCommentSuccess) {
-    comment = <HNCommentList className="tw-mt-16" hnComments={hnItemComments} />;
-  } else if (isCommentError) {
-    comment = <div>{errorComment.toString()}</div>;
-  }
-
   return (
     <>
       <Head>
         <title>{`${hnItem.title} | Hacker News Reader`}</title>
       </Head>
       {content}
-      {comment}
+      <HNCommentList className="tw-mt-16" hnCommentIds={hnItem.kids || []} />
     </>
   );
 }

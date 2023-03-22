@@ -37,7 +37,7 @@ const hnApi = createApi({
       transformResponse: (response: RawHNItem) => augmentHNItem(response),
     }),
     getItems: build.query({
-      queryFn: async (arg: string[], _queryApi, _extraOptions, fetchWithBQ) => {
+      queryFn: async (arg: number[], _queryApi, _extraOptions, fetchWithBQ) => {
         const proms: Promise = [];
 
         for (let count = 0; count < arg.length; count += 1) {

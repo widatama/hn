@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import TimeAgo from 'react-timeago';
 
+import HNCommentList from '@/components/HNCommentList';
 import type { HNItem } from '@/types/hn';
 
 type HNCommentCompProps = {
@@ -14,11 +15,44 @@ type HNCommentCompProps = {
 export default function HNCommentComp({ className = '', hnComment }: HNCommentCompProps) {
   const content = hnComment.text ? Parser().parse(hnComment.text) : '';
   const [collapsed, setCollapsed] = useState(false);
+  const [childrenCollapsed, setChildrenCollapsed] = useState(true);
+
+  let childrenBlock = null;
+
+  if (hnComment.kids && hnComment.kids.length > 0) {
+    if (childrenCollapsed) {
+      childrenBlock = (
+        <button
+          type="button"
+          className="tw-text-xs"
+          onClick={() => setChildrenCollapsed(false)}
+        >
+          [+]
+        </button>
+      );
+    } else {
+      childrenBlock = (
+        <>
+          <button
+            type="button"
+            className="tw-text-xs"
+            onClick={() => setChildrenCollapsed(true)}
+          >
+            [-]
+          </button>
+          <HNCommentList className="tw-mt-2 tw-ml-6" hnCommentIds={hnComment.kids} />
+        </>
+      );
+    }
+  }
 
   const contentBlock = collapsed ? null : (
-    <div className="hn-item-text">
-      {content}
-    </div>
+    <>
+      <div className="hn-item-text">
+        {content}
+      </div>
+      {childrenBlock}
+    </>
   );
 
   return (

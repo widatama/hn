@@ -47,7 +47,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
         <span>
           {' | '}
           <Link href={hnItem.itemUrl}>
-            {`${hnItem.kids ? hnItem.kids.length : 0} top level comments`}
+            {`${hnItem.descendants} comments`}
           </Link>
         </span>
       </div>

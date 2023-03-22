@@ -6,9 +6,9 @@ export interface RawHNItem {
   dead: boolean;
   deleted: boolean;
   descendants?: number;
-  id: string;
-  kids?: string[];
-  parent?: string;
+  id: number;
+  kids?: number[];
+  parent?: number;
   parts?: string[];
   poll?: string;
   score: number;
