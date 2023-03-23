@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
+// eslint-disable-next-line import/no-cycle
 import HNCommentComp from '@/components/HNCommentComp';
 import { useGetItemsQuery } from '@/store/api/hn';
 

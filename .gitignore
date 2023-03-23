@@ -13,6 +13,7 @@ lerna-debug.log*
 coverage/
 dist-ssr/
 dist/
+dist-static/
 node_modules/
 temp/
 tmp/

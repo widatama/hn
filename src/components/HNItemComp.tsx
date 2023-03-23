@@ -15,8 +15,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   if (hnItem.itemHostname) {
     hostname = (
       <span className="tw-text-xs">
-        {' '}
-        ({hnItem.itemHostname})
+        {` (${hnItem.itemHostname})`}
       </span>
     );
   }

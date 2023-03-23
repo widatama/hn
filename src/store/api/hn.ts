@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { fetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import type { HNItem, RawHNItem } from '@/types/hn';
 
 function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BASE_PATH): HNItem {
-  const result: HNItem = { ...hnItem };
+  const result = { ...hnItem } as HNItem;
 
   const creatorUrl = new URL(window.location.origin);
   creatorUrl.pathname = `${basePath}/user`;
@@ -23,7 +23,7 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
 
   const itemUrl = new URL(window.location.origin);
   itemUrl.pathname = `${basePath}/item`;
-  itemUrl.searchParams.append('id', result.id);
+  itemUrl.searchParams.append('id', result.id.toString());
   result.itemUrl = itemUrl.href;
 
   return result;
@@ -38,7 +38,7 @@ const hnApi = createApi({
     }),
     getItems: build.query({
       queryFn: async (arg: number[], _queryApi, _extraOptions, fetchWithBQ) => {
-        const proms: Promise = [];
+        const proms: ReturnType<typeof fetchWithBQ>[] = [];
 
         for (let count = 0; count < arg.length; count += 1) {
           proms.push(fetchWithBQ(`item/${arg[count]}.json`));
@@ -49,12 +49,14 @@ const hnApi = createApi({
           const result: HNItem[] = [];
 
           responses.forEach((response) => {
-            result.push(augmentHNItem(response.value.data as RawHNItem));
+            if (response.status === 'fulfilled') {
+              result.push(augmentHNItem(response.value.data as RawHNItem));
+            }
           });
 
           return { data: result };
         } catch (err) {
-          return { error: err as fetchBaseQueryError };
+          return { error: err as FetchBaseQueryError };
         }
       },
     }),
@@ -64,11 +66,11 @@ const hnApi = createApi({
         const topItemsResponse = await fetchWithBQ('/topstories.json');
 
         if (topItemsResponse.error) {
-          return { error: topItemsResponse.error as fetchBaseQueryError };
+          return { error: topItemsResponse.error as FetchBaseQueryError };
         }
 
         const itemIds = topItemsResponse.data as number[];
-        const proms: Promise = [];
+        const proms: ReturnType<typeof fetchWithBQ>[] = [];
 
         for (let count = ((page - 1) * limit); count < limit; count += 1) {
           proms.push(fetchWithBQ(`/item/${itemIds[count]}.json`));
@@ -79,12 +81,14 @@ const hnApi = createApi({
           const result: HNItem[] = [];
 
           responses.forEach((response) => {
-            result.push(augmentHNItem(response.value.data as RawHNItem));
+            if (response.status === 'fulfilled') {
+              result.push(augmentHNItem(response.value.data as RawHNItem));
+            }
           });
 
           return { data: result };
         } catch (err) {
-          return { error: err as fetchBaseQueryError };
+          return { error: err as FetchBaseQueryError };
         }
       },
     }),
