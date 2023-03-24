@@ -72,8 +72,8 @@ const hnApi = createApi({
         const itemIds = topItemsResponse.data as number[];
         const proms: ReturnType<typeof fetchWithBQ>[] = [];
 
-        for (let count = ((page - 1) * limit); count < limit; count += 1) {
-          proms.push(fetchWithBQ(`/item/${itemIds[count]}.json`));
+        for (let count = 0, idx = ((page - 1) * limit); count < limit; count += 1, idx += 1) {
+          proms.push(fetchWithBQ(`/item/${itemIds[idx]}.json`));
         }
 
         try {
