@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import HNUserComp from '@/components/HNUserComp';
+import LoadingCue from '@/components/LoadingCue';
 import { useGetUserQuery } from '@/store/api/hn';
 
 export default function User() {
@@ -24,7 +25,7 @@ export default function User() {
   let content: React.ReactNode;
 
   if (isLoading) {
-    content = <div>Loading</div>;
+    content = <LoadingCue />;
   } else if (isSuccess && hnUser) {
     content = <HNUserComp hnUser={hnUser} />;
   } else if (isError) {

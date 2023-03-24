@@ -3,6 +3,7 @@ import React from 'react';
 
 // eslint-disable-next-line import/no-cycle
 import HNCommentComp from '@/components/HNCommentComp';
+import LoadingCue from '@/components/LoadingCue';
 import { useGetItemsQuery } from '@/store/api/hn';
 
 type HNCommentListProps = {
@@ -22,7 +23,7 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
   const baseClassName = 'tw-overflow-y-auto';
 
   if (isLoading) {
-    return (<div className={clsx(className, baseClassName)}>Loading</div>);
+    return (<LoadingCue className={clsx(className, baseClassName)} />);
   }
 
   if (isSuccess) {

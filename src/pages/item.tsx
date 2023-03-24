@@ -2,8 +2,9 @@ import { Parser } from 'html-to-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import HNItemComp from '@/components/HNItemComp';
 import HNCommentList from '@/components/HNCommentList';
+import HNItemComp from '@/components/HNItemComp';
+import LoadingCue from '@/components/LoadingCue';
 import { useGetItemQuery } from '@/store/api/hn';
 import type { HNItem } from '@/types/hn';
 
@@ -27,7 +28,7 @@ export default function Item() {
   let content: React.ReactNode;
 
   if (isLoading) {
-    content = <div>Loading</div>;
+    content = <LoadingCue />;
   } else if (isSuccess && hnItem) {
     content = (
       <>
@@ -49,7 +50,7 @@ export default function Item() {
         <title>{`${hnItem.title} | Hacker News Reader`}</title>
       </Head>
       {content}
-      <HNCommentList className="tw-mt-16" hnCommentIds={hnItem.kids || []} />
+      <HNCommentList className="tw-mt-16 tw-mb-6" hnCommentIds={hnItem.kids || []} />
     </>
   );
 }
