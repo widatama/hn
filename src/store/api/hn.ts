@@ -30,7 +30,7 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
 }
 
 const hnApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://hacker-news.firebaseio.com/v0/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_API_URL }),
   endpoints: (build) => ({
     getItem: build.query({
       query: (id) => ({ url: `/item/${id}.json` }),
