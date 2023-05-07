@@ -40,14 +40,6 @@ export default function HNItemList({ className = '', page }: HNItemListProps) {
   }
 
   return null;
-
-  // return (
-    // <div className={clsx(className, 'tw-overflow-y-auto tw-mb-4')}>
-      // {hnItems.map((hnItem) => (
-        // <HNItemComp className="tw-mb-3" hnItem={hnItem} key={hnItem.id} />
-      // ))}
-    // </div>
-  // );
 }
 
 HNItemList.defaultProps = {
