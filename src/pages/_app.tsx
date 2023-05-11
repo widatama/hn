@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <header className="tw-mt-4 tw-mb-6">
           <h1 className="tw-font-bold tw-text-2xl">
             <Link href="/">
-              Hacker News Reader
+              {process.env.NEXT_PUBLIC_APP_TITLE}
             </Link>
           </h1>
         </header>

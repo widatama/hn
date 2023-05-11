@@ -25,10 +25,10 @@ export default function Item() {
     );
   }
 
-  let title = (<title>Hacker News Reader</title>);
+  let title = (<title>{process.env.NEXT_PUBLIC_APP_TITLE}</title>);
   if (hnItem && hnItem.title) {
     title = (
-      <title>{`${hnItem.title} | Hacker News Reader`}</title>
+      <title>{`${hnItem.title} | ${process.env.NEXT_PUBLIC_APP_TITLE}`}</title>
     );
   }
 

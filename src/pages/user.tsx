@@ -37,7 +37,7 @@ export default function User() {
   return (
     <>
       <Head>
-        <title>{`Profile: ${router.query.id} | Hacker News Reader`}</title>
+        <title>{`Profile: ${router.query.id} | ${process.env.NEXT_PUBLIC_APP_TITLE}`}</title>
       </Head>
       {content}
     </>

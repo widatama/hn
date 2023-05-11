@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Hacker News Reader</title>
+        <title>{process.env.NEXT_PUBLIC_APP_TITLE}</title>
       </Head>
       <HNItemList page={currentPage} />
     </>
