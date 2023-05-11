@@ -25,6 +25,13 @@ export default function Item() {
     );
   }
 
+  let title = (<title>Hacker News Reader</title>);
+  if (hnItem && hnItem.title) {
+    title = (
+      <title>{`${hnItem.title} | Hacker News Reader`}</title>
+    );
+  }
+
   let content: React.ReactNode;
 
   if (isLoading) {
@@ -47,7 +54,7 @@ export default function Item() {
   return (
     <>
       <Head>
-        <title>{`${hnItem.title} | Hacker News Reader`}</title>
+        {title}
       </Head>
       {content}
       <HNCommentList className="tw-mt-16 tw-mb-6" hnCommentIds={hnItem.kids || []} />
