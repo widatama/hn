@@ -20,6 +20,18 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
     );
   }
 
+  let comments = null;
+  if ('descendants' in hnItem) {
+    comments = (
+      <span>
+        {' | '}
+        <Link href={hnItem.itemUrl}>
+          {`${hnItem.descendants} comments`}
+        </Link>
+      </span>
+    );
+  }
+
   return (
     <div className={clsx(className)}>
       <div>
@@ -43,12 +55,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
           {' '}
           <TimeAgo date={hnItem.time * 1000} />
         </span>
-        <span>
-          {' | '}
-          <Link href={hnItem.itemUrl}>
-            {`${hnItem.descendants} comments`}
-          </Link>
-        </span>
+        {comments}
       </div>
     </div>
   );
