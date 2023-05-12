@@ -18,6 +18,8 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
   const [collapsed, setCollapsed] = useState(false);
   const [childrenCollapsed, setChildrenCollapsed] = useState(true);
 
+  if (hnComment.deleted) return null;
+
   let childrenBlock = null;
 
   if (hnComment.kids && hnComment.kids.length > 0) {
