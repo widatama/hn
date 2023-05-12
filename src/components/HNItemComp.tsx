@@ -53,7 +53,9 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
         </span>
         <span>
           {' '}
-          <TimeAgo date={hnItem.time * 1000} />
+          <Link href={hnItem.itemUrl}>
+            <TimeAgo date={hnItem.time * 1000} />
+          </Link>
         </span>
         {comments}
       </div>
