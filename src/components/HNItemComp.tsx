@@ -47,8 +47,9 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
           {`${hnItem.score} points`}
         </span>
         <span>
+          {' by '}
           <Link href={hnItem.creatorUrl}>
-            {` by ${hnItem.by}`}
+            {`${hnItem.by}`}
           </Link>
         </span>
         <span>
