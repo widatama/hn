@@ -11,18 +11,27 @@ type HNItemCompProps = {
 };
 
 export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) {
-  let hostname = null;
+  let hostnameBlock = null;
   if (hnItem.itemHostname) {
-    hostname = (
+    hostnameBlock = (
       <span className="tw-text-xs">
         {` (${hnItem.itemHostname})`}
       </span>
     );
   }
 
-  let comments = null;
+  let scoreBlock = null;
+  if ('score' in hnItem) {
+    scoreBlock = (
+      <span>
+        {`${hnItem.score} points `}
+      </span>
+    );
+  }
+
+  let commentBlock = null;
   if ('descendants' in hnItem) {
-    comments = (
+    commentBlock = (
       <span>
         {' | '}
         <Link href={hnItem.itemUrl}>
@@ -40,14 +49,12 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
             {hnItem.title}
           </Link>
         </h2>
-        {hostname}
+        {hostnameBlock}
       </div>
       <div className="tw-text-xs tw-text-neutral-400">
+        {scoreBlock}
         <span>
-          {`${hnItem.score} points`}
-        </span>
-        <span>
-          {' by '}
+          {'by '}
           <Link href={hnItem.creatorUrl}>
             {`${hnItem.by}`}
           </Link>
@@ -58,7 +65,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
             <TimeAgo date={hnItem.time * 1000} />
           </Link>
         </span>
-        {comments}
+        {commentBlock}
       </div>
     </div>
   );
