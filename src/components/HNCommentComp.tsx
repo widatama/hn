@@ -43,7 +43,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
           >
             [-]
           </button>
-          <HNCommentList className="tw-mt-2 tw-ml-6" hnCommentIds={hnComment.kids} />
+          <HNCommentList className="tw-mt-2 tw-ml-1 tw-pl-5 tw-border-dotted tw-border-l tw-border-neutral-500" hnCommentIds={hnComment.kids} />
         </>
       );
     }
