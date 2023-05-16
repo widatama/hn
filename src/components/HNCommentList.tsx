@@ -31,7 +31,7 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
       <div className={clsx(className, baseClassName)}>
         {hnComments.map((hnComment, idx) => (
           <HNCommentComp
-            className={clsx({ 'tw-mb-6': idx < hnComments.length - 1 })}
+            className={clsx({ 'tw-mt-6': idx > 0 })}
             hnComment={hnComment}
             key={hnComment.id}
           />
