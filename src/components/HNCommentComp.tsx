@@ -51,7 +51,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
 
   const contentBlock = collapsed ? null : (
     <>
-      <div className="hn-item-text">
+      <div className="hn-item-text tw-overflow-auto">
         {content}
       </div>
       {childrenBlock}
