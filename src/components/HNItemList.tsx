@@ -16,11 +16,11 @@ export default function HNItemList({ className = '', page }: HNItemListProps) {
     data: hnItems = [],
     error,
     isError,
-    isLoading,
+    isFetching,
     isSuccess,
   } = useGetTopItemsQuery({ limit: 30, page }, { refetchOnMountOrArgChange: true });
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingCue className={clsx(className, 'tw-mb-4')} />;
   }
 

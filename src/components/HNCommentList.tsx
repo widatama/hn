@@ -16,13 +16,13 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
     data: hnComments = [],
     error,
     isError,
-    isLoading,
+    isFetching,
     isSuccess,
   } = useGetItemsQuery(hnCommentIds);
 
   const baseClassName = 'tw-overflow-y-auto';
 
-  if (isLoading) {
+  if (isFetching) {
     return (<LoadingCue className={clsx(className, baseClassName)} />);
   }
 
