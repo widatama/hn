@@ -4,10 +4,16 @@ import logger from 'redux-logger';
 
 import hnApi from '@/store/api/hn';
 
+const middleware = [...getDefaultMiddleware(), hnApi.middleware];
+
+if (process.env.NODE_ENV !== 'production') {
+  middleware.push(logger);
+}
+
 function makeStore() {
   return configureStore({
     devTools: true,
-    middleware: [...getDefaultMiddleware(), hnApi.middleware, logger],
+    middleware,
     reducer: {
       [hnApi.reducerPath]: hnApi.reducer,
     },
