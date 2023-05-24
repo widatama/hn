@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   /* eslint-disable react/jsx-props-no-spreading */
   return (
     <Provider store={store}>
-      <div className="tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
+      <div className="tw-min-w-[40vh] md:tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
         <header className="tw-mt-4 tw-mb-6">
           <h1 className="tw-font-bold tw-text-2xl">
             <Link href="/">
