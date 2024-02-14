@@ -16,6 +16,7 @@ dist-ssr/
 dist/
 dist-static/
 node_modules/
+out/
 temp/
 tmp/
 
