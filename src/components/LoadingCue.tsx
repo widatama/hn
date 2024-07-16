@@ -12,7 +12,3 @@ export default function LoadingCue({ className = '' }: LoadingCueProps) {
     </div>
   );
 }
-
-LoadingCue.defaultProps = {
-  className: '',
-};

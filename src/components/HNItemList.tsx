@@ -41,7 +41,3 @@ export default function HNItemList({ className = '', page }: HNItemListProps) {
 
   return null;
 }
-
-HNItemList.defaultProps = {
-  className: '',
-};
