@@ -70,7 +70,3 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
     </div>
   );
 }
-
-HNItemComp.defaultProps = {
-  className: '',
-};

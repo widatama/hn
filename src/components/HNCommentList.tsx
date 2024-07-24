@@ -46,7 +46,3 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
 
   return null;
 }
-
-HNCommentList.defaultProps = {
-  className: '',
-};

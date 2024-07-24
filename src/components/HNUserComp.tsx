@@ -28,7 +28,3 @@ export default function HNUserComp({ className = '', hnUser }: HNUserCompProps) 
     </dl>
   );
 }
-
-HNUserComp.defaultProps = {
-  className: '',
-};

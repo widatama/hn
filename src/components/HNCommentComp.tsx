@@ -79,7 +79,3 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
     </div>
   );
 }
-
-HNCommentComp.defaultProps = {
-  className: '',
-};
