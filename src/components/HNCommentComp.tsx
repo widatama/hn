@@ -9,6 +9,7 @@ import HNCommentList from '@/components/HNCommentList';
 import type { HNItem } from '@/types/hn';
 
 type HNCommentCompProps = {
+  // eslint-disable-next-line react/require-default-props
   className?: string;
   hnComment: HNItem;
 };

@@ -6,6 +6,7 @@ import TimeAgo from 'react-timeago';
 import type { HNItem } from '@/types/hn';
 
 type HNItemCompProps = {
+  // eslint-disable-next-line react/require-default-props
   className?: string;
   hnItem: HNItem;
 };

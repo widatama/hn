@@ -7,6 +7,7 @@ import LoadingCue from '@/components/LoadingCue';
 import { useGetItemsQuery } from '@/store/api/hn';
 
 type HNCommentListProps = {
+  // eslint-disable-next-line react/require-default-props
   className?: string;
   hnCommentIds: number[];
 };
