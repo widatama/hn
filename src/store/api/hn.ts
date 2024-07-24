@@ -50,7 +50,9 @@ const hnApi = createApi({
 
           responses.forEach((response) => {
             if (response.status === 'fulfilled') {
-              result.push(augmentHNItem(response.value.data as RawHNItem));
+              if (response.value.data) {
+                result.push(augmentHNItem(response.value.data as RawHNItem));
+              }
             }
           });
 
@@ -82,7 +84,9 @@ const hnApi = createApi({
 
           responses.forEach((response) => {
             if (response.status === 'fulfilled') {
-              result.push(augmentHNItem(response.value.data as RawHNItem));
+              if (response.value.data) {
+                result.push(augmentHNItem(response.value.data as RawHNItem));
+              }
             }
           });
 
