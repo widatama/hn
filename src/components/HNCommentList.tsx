@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import React from 'react';
 
-// eslint-disable-next-line import/no-cycle
 import HNCommentComp from '@/components/HNCommentComp';
 import LoadingCue from '@/components/LoadingCue';
 import { useGetItemsQuery } from '@/store/api/hn';
 
 type HNCommentListProps = {
-  // eslint-disable-next-line react/require-default-props
+   
   className?: string;
   hnCommentIds: number[];
 };

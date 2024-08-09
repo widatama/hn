@@ -8,7 +8,7 @@ import '@/stylesheets/main.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
-  /* eslint-disable react/jsx-props-no-spreading */
+   
   return (
     <Provider store={store}>
       <div className="tw-min-w-[40vh] md:tw-min-w-[60vh] tw-w-[75%] tw-mx-auto tw-overflow-y-auto">
@@ -23,5 +23,5 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
     </Provider>
   );
-  /* eslint-enable */
+   
 }

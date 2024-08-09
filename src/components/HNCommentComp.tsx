@@ -4,12 +4,11 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import TimeAgo from 'react-timeago';
 
-// eslint-disable-next-line import/no-cycle
 import HNCommentList from '@/components/HNCommentList';
 import type { HNItem } from '@/types/hn';
 
 type HNCommentCompProps = {
-  // eslint-disable-next-line react/require-default-props
+   
   className?: string;
   hnComment: HNItem;
 };

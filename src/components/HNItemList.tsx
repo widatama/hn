@@ -7,7 +7,7 @@ import { useGetTopItemsQuery } from '@/store/api/hn';
 import HNItemComp from '@/components/HNItemComp';
 
 type HNItemListProps = {
-  // eslint-disable-next-line react/require-default-props
+   
   className?: string;
   page: number;
 };

@@ -15,7 +15,7 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
     try {
       const externalUrl = new URL(result.url);
       result.itemHostname = externalUrl.hostname;
-    } catch (err) {
+    } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
       // result.url might not be valid, does not have to be handled
       // result.itemHostname will be undefined
     }
