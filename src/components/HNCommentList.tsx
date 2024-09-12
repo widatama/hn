@@ -6,7 +6,6 @@ import LoadingCue from '@/components/LoadingCue';
 import { useGetItemsQuery } from '@/store/api/hn';
 
 type HNCommentListProps = {
-   
   className?: string;
   hnCommentIds: number[];
 };
@@ -23,7 +22,7 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
   const baseClassName = 'tw-overflow-y-auto';
 
   if (isFetching) {
-    return (<LoadingCue className={clsx(className, baseClassName)} />);
+    return (<LoadingCue className={clsx(className, baseClassName)}>Loading comments</LoadingCue>);
   }
 
   if (isSuccess) {

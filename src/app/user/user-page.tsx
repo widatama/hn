@@ -1,13 +1,14 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+'use client'
+
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import HNUserComp from '@/components/HNUserComp';
 import LoadingCue from '@/components/LoadingCue';
 import { useGetUserQuery } from '@/store/api/hn';
 
-export default function User() {
-  const router = useRouter();
+export default function UserPage() {
+  const searchParams = useSearchParams();
 
   const {
     data: hnUser = {},
@@ -15,9 +16,9 @@ export default function User() {
     isError,
     isLoading,
     isSuccess,
-  } = useGetUserQuery(router.query.id || '');
+  } = useGetUserQuery(searchParams.get('id') || '');
 
-  if (!('id' in router.query)) {
+  if (!(searchParams.get('id'))) {
     return (
       <div>No such user</div>
     );
@@ -37,9 +38,7 @@ export default function User() {
 
   return (
     <>
-      <Head>
-        <title>{`Profile: ${router.query.id} | ${process.env.NEXT_PUBLIC_APP_TITLE}`}</title>
-      </Head>
+      <title>{`Profile: ${searchParams.get('id')} | ${process.env.NEXT_PUBLIC_APP_TITLE}`}</title>
       {content}
     </>
   );

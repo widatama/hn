@@ -1,6 +1,7 @@
+'use client'
+
 import { Parser } from 'html-to-react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import HNCommentList from '@/components/HNCommentList';
@@ -10,7 +11,7 @@ import { useGetItemQuery } from '@/store/api/hn';
 import type { HNItem } from '@/types/hn';
 
 export default function Item() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     data: hnItem = {} as HNItem,
@@ -18,9 +19,9 @@ export default function Item() {
     isError,
     isLoading,
     isSuccess,
-  } = useGetItemQuery(router.query.id || '');
+  } = useGetItemQuery(searchParams.get('id') || '');
 
-  if (!('id' in router.query)) {
+  if (!(searchParams.get('id'))) {
     return (
       <div>No such item</div>
     );
@@ -54,11 +55,10 @@ export default function Item() {
 
   return (
     <>
-      <Head>
-        {title}
-      </Head>
+      {title}
       {content}
       <HNCommentList className="tw-mt-16 tw-mb-6" hnCommentIds={hnItem.kids || []} />
     </>
   );
 }
+
