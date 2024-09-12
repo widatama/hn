@@ -6,7 +6,6 @@ import TimeAgo from 'react-timeago';
 import type { HNItem } from '@/types/hn';
 
 type HNItemCompProps = {
-   
   className?: string;
   hnItem: HNItem;
 };
@@ -42,6 +41,18 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
     );
   }
 
+  let upstreamLinkBlock = null;
+  if ('itemUpstreamUrl' in hnItem && typeof hnItem.itemUpstreamUrl === 'string') {
+    upstreamLinkBlock = (
+      <span>
+        {' | '}
+        <Link href={hnItem.itemUpstreamUrl} title="Open in original HN">
+          ☍
+        </Link>
+      </span>
+    )
+  }
+
   return (
     <div className={clsx(className)}>
       <div>
@@ -67,6 +78,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
           </Link>
         </span>
         {commentBlock}
+        {upstreamLinkBlock}
       </div>
     </div>
   );

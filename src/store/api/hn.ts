@@ -3,7 +3,11 @@ import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import type { HNItem, RawHNItem } from '@/types/hn';
 
-function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BASE_PATH): HNItem {
+function augmentHNItem(
+  hnItem: RawHNItem,
+  basePath = process.env.NEXT_PUBLIC_BASE_PATH,
+  upstreamURL = process.env.NEXT_PUBLIC_UPSTREAM_URL,
+): HNItem {
   const result = { ...hnItem } as HNItem;
 
   const creatorUrl = new URL(window.location.origin);
@@ -25,6 +29,13 @@ function augmentHNItem(hnItem: RawHNItem, basePath = process.env.NEXT_PUBLIC_BAS
   itemUrl.pathname = `${basePath}/item`;
   itemUrl.searchParams.append('id', result.id.toString());
   result.itemUrl = itemUrl.href;
+
+  if (upstreamURL) {
+    const itemUpstreamUrl = new URL(upstreamURL);
+    itemUpstreamUrl.pathname = '/item';
+    itemUpstreamUrl.searchParams.append('id', result.id.toString());
+    result.itemUpstreamUrl = itemUpstreamUrl.href;
+  }
 
   return result;
 }

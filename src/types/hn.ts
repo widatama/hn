@@ -23,6 +23,7 @@ export interface HNItem extends RawHNItem {
   creatorUrl: string;
   itemHostname?: string;
   itemUrl: string;
+  itemUpstreamUrl?: string;
 }
 
 // From https://github.com/HackerNews/API#users
