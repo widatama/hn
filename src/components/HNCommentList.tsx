@@ -19,7 +19,7 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
     isSuccess,
   } = useGetItemsQuery(hnCommentIds);
 
-  const baseClassName = 'tw-overflow-y-auto';
+  const baseClassName = 'tw:overflow-y-auto';
 
   if (isFetching) {
     return (<LoadingCue className={clsx(className, baseClassName)}>Loading comments</LoadingCue>);
@@ -30,7 +30,7 @@ export default function HNCommentList({ className = '', hnCommentIds = [] }: HNC
       <div className={clsx(className, baseClassName)}>
         {hnComments.map((hnComment, idx) => (
           <HNCommentComp
-            className={clsx({ 'tw-mt-6': idx > 0 })}
+            className={clsx({ 'tw:mt-6': idx > 0 })}
             hnComment={hnComment}
             key={hnComment.id}
           />

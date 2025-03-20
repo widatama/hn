@@ -27,7 +27,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
       childrenBlock = (
         <button
           type="button"
-          className="tw-text-xs"
+          className="tw:text-xs"
           onClick={() => setChildrenCollapsed(false)}
         >
           [+]
@@ -38,12 +38,12 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
         <>
           <button
             type="button"
-            className="tw-text-xs"
+            className="tw:text-xs"
             onClick={() => setChildrenCollapsed(true)}
           >
             [-]
           </button>
-          <HNCommentList className="tw-mt-2 tw-ml-1 tw-pl-5 tw-border-dotted tw-border-l tw-border-neutral-500" hnCommentIds={hnComment.kids} />
+          <HNCommentList className="tw:mt-2 tw:ml-1 tw:pl-5 tw:border-dotted tw:border-l tw:border-neutral-500" hnCommentIds={hnComment.kids} />
         </>
       );
     }
@@ -51,7 +51,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
 
   const contentBlock = collapsed ? null : (
     <>
-      <div className="hn-item-text tw-overflow-auto">
+      <div className="hn-item-text tw:overflow-auto">
         {content}
       </div>
       {childrenBlock}
@@ -60,7 +60,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
 
   return (
     <div className={clsx(className)}>
-      <div className="tw-text-xs tw-text-neutral-400 tw-mb-1">
+      <div className="tw:text-xs tw:text-neutral-400 tw:mb-1">
         <span>
           <Link href={hnComment.creatorUrl}>
             {hnComment.by}

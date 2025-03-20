@@ -14,7 +14,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   let hostnameBlock = null;
   if (hnItem.itemHostname) {
     hostnameBlock = (
-      <span className="tw-text-xs">
+      <span className="tw:text-xs">
         {` (${hnItem.itemHostname})`}
       </span>
     );
@@ -56,14 +56,14 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   return (
     <div className={clsx(className)}>
       <div>
-        <h2 className="tw-inline-block">
+        <h2 className="tw:inline-block">
           <Link href={hnItem.url || hnItem.itemUrl}>
             {hnItem.title}
           </Link>
         </h2>
         {hostnameBlock}
       </div>
-      <div className="tw-text-xs tw-text-neutral-400">
+      <div className="tw:text-xs tw:text-neutral-400">
         {scoreBlock}
         <span>
           {'by '}

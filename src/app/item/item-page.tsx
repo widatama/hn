@@ -43,7 +43,7 @@ export default function Item() {
       <>
         <HNItemComp hnItem={hnItem} />
         {hnItem.text
-          ? <div className="tw-mt-4 tw-mb-16 tw-text-neutral-300 hn-item-text">{Parser().parse(hnItem.text)}</div>
+          ? <div className="tw:mt-4 tw:mb-16 tw:text-neutral-300 hn-item-text">{Parser().parse(hnItem.text)}</div>
           : null}
       </>
     );
@@ -57,7 +57,7 @@ export default function Item() {
     <>
       {title}
       {content}
-      <HNCommentList className="tw-mt-16 tw-mb-6" hnCommentIds={hnItem.kids || []} />
+      <HNCommentList className="tw:mt-16 tw:mb-6" hnCommentIds={hnItem.kids || []} />
     </>
   );
 }

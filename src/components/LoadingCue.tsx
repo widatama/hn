@@ -8,7 +8,7 @@ type LoadingCueProps = {
 
 export default function LoadingCue({ className = '', children }: LoadingCueProps) {
   return (
-    <div className={clsx(className, 'tw-animate-pulse')}>
+    <div className={clsx(className, 'tw:animate-pulse')}>
       {children ? children : 'Loading'}
     </div>
   );
