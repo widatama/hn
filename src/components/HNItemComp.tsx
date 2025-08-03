@@ -33,7 +33,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   if ('descendants' in hnItem) {
     commentBlock = (
       <span>
-        {' | '}
+        {' • '}
         <Link href={hnItem.itemUrl}>
           {`${hnItem.descendants} comments`}
         </Link>
@@ -44,8 +44,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   let upstreamLinkBlock = null;
   if ('itemUpstreamUrl' in hnItem && typeof hnItem.itemUpstreamUrl === 'string') {
     upstreamLinkBlock = (
-      <span>
-        {' | '}
+      <span className="tw:ml-3">
         <Link href={hnItem.itemUpstreamUrl} title="Open in original HN">
           ☍
         </Link>
@@ -72,7 +71,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
           </Link>
         </span>
         <span>
-          {' '}
+          {' • '}
           <Link href={hnItem.itemUrl}>
             <TimeAgo date={hnItem.time * 1000} />
           </Link>

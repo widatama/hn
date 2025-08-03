@@ -57,7 +57,7 @@ export default function Item() {
     <>
       {title}
       {content}
-      <HNCommentList className="tw:mt-16 tw:mb-6" hnCommentIds={hnItem.kids || []} />
+      <HNCommentList className="tw:my-16" hnCommentIds={hnItem.kids || []} />
     </>
   );
 }

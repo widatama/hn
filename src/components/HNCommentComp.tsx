@@ -27,7 +27,8 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
       childrenBlock = (
         <button
           type="button"
-          className="tw:text-xs"
+          className="tw:text-xs tw:cursor-pointer"
+          title="Expand"
           onClick={() => setChildrenCollapsed(false)}
         >
           [+]
@@ -38,7 +39,8 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
         <>
           <button
             type="button"
-            className="tw:text-xs"
+            className="tw:text-xs tw:cursor-pointer"
+            title="Collapse"
             onClick={() => setChildrenCollapsed(true)}
           >
             [-]
@@ -67,11 +69,15 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
           </Link>
         </span>
         <span>
-          {' '}
+          {' • '}
           <TimeAgo date={hnComment.time * 1000} />
-          {' '}
         </span>
-        <button type="button" onClick={() => setCollapsed(!collapsed)}>
+        <button
+          type="button"
+          className="tw:ml-3 tw:cursor-pointer"
+          title={`${collapsed ? 'Expand' : 'Collapse'}`}
+          onClick={() => setCollapsed(!collapsed)}
+        >
           {`[${collapsed ? '+' : '-'}]`}
         </button>
       </div>
