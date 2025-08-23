@@ -51,7 +51,7 @@ export default [
   {
     // for typescript files
     files: ['**/*.ts', '**/*.cts', '**/*.mts'],
-    ignores: ['**/*.config.*'],
+    ignores: ['**/*.config.*', '**/next-env.d.ts'],
     languageOptions: {
       ecmaVersion: 'latest',
       parser: eslintTS.parser,
