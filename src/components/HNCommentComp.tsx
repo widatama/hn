@@ -31,7 +31,7 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
           title="Expand"
           onClick={() => setChildrenCollapsed(false)}
         >
-          [+]
+          ✚
         </button>
       );
     } else {
@@ -43,9 +43,22 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
             title="Collapse"
             onClick={() => setChildrenCollapsed(true)}
           >
-            [-]
+            ✖
           </button>
-          <HNCommentList className="tw:mt-2 tw:ml-1 tw:pl-5 tw:border-dotted tw:border-l tw:border-neutral-500" hnCommentIds={hnComment.kids} />
+          <div className="tw:flex tw:mt-1">
+            <button
+              type="button"
+              className="tw:text-xs tw:cursor-pointer tw:pl-1 tw:pr-3 tw:group"
+              title="Collapse"
+              onClick={() => setChildrenCollapsed(true)}
+            >
+              <div
+                className="tw:border-solid tw:border-l tw:border-neutral-600 tw:group-hover:border-neutral-300 tw:w-px tw:h-full"
+              >
+              </div>
+            </button>
+            <HNCommentList className="tw:mt-1 tw:ml-1" hnCommentIds={hnComment.kids} />
+          </div>
         </>
       );
     }
@@ -63,22 +76,22 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
   return (
     <div className={clsx(className)}>
       <div className="tw:text-xs tw:text-neutral-400 tw:mb-1">
-        <span>
+        <span className="tw:font-bold">
           <Link href={hnComment.creatorUrl}>
             {hnComment.by}
           </Link>
         </span>
-        <span>
-          {' • '}
+        {' • '}
+        <span className="tw:font-bold">
           <TimeAgo date={hnComment.time * 1000} />
         </span>
         <button
           type="button"
-          className="tw:ml-3 tw:cursor-pointer"
+          className="tw:ml-2 tw:cursor-pointer"
           title={`${collapsed ? 'Expand' : 'Collapse'}`}
           onClick={() => setCollapsed(!collapsed)}
         >
-          {`[${collapsed ? '+' : '-'}]`}
+          {`${collapsed ? '✚' : '✖'}`}
         </button>
       </div>
       {contentBlock}

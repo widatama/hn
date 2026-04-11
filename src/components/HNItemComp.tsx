@@ -23,7 +23,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   let scoreBlock = null;
   if ('score' in hnItem) {
     scoreBlock = (
-      <span>
+      <span className="tw:font-bold">
         {`${hnItem.score} points `}
       </span>
     );
@@ -34,7 +34,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
     commentBlock = (
       <span>
         {' • '}
-        <Link href={hnItem.itemUrl}>
+        <Link href={hnItem.itemUrl} className="tw:font-bold">
           {`${hnItem.descendants} comments`}
         </Link>
       </span>
@@ -44,7 +44,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   let upstreamLinkBlock = null;
   if ('itemUpstreamUrl' in hnItem && typeof hnItem.itemUpstreamUrl === 'string') {
     upstreamLinkBlock = (
-      <span className="tw:ml-3">
+      <span className="tw:ml-3 tw:font-bold">
         <Link href={hnItem.itemUpstreamUrl} title="Open in original HN">
           ☍
         </Link>
@@ -64,7 +64,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
       </div>
       <div className="tw:text-xs tw:text-neutral-400">
         {scoreBlock}
-        <span>
+        <span className="tw:font-bold">
           {'by '}
           <Link href={hnItem.creatorUrl}>
             {`${hnItem.by}`}
@@ -72,7 +72,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
         </span>
         <span>
           {' • '}
-          <Link href={hnItem.itemUrl}>
+          <Link href={hnItem.itemUrl} className="tw:font-bold">
             <TimeAgo date={hnItem.time * 1000} />
           </Link>
         </span>
