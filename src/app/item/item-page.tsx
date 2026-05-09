@@ -2,7 +2,7 @@
 
 import { Parser } from 'html-to-react';
 import { useSearchParams } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import HNCommentList from '@/components/HNCommentList';
 import HNItemComp from '@/components/HNItemComp';
@@ -21,16 +21,15 @@ export default function Item() {
     isSuccess,
   } = useGetItemQuery(searchParams.get('id') || '');
 
+  useEffect(() => {
+    document.title = hnItem?.title
+      ? `${hnItem.title} | ${process.env.NEXT_PUBLIC_APP_TITLE}`
+      : process.env.NEXT_PUBLIC_APP_TITLE ?? '';
+  }, [hnItem?.title]);
+
   if (!(searchParams.get('id'))) {
     return (
       <div>No such item</div>
-    );
-  }
-
-  let title = (<title>{process.env.NEXT_PUBLIC_APP_TITLE}</title>);
-  if (hnItem && hnItem.title) {
-    title = (
-      <title>{`${hnItem.title} | ${process.env.NEXT_PUBLIC_APP_TITLE}`}</title>
     );
   }
 
@@ -55,7 +54,6 @@ export default function Item() {
 
   return (
     <>
-      {title}
       {content}
       <HNCommentList className="tw:my-16" hnCommentIds={hnItem.kids || []} />
     </>
