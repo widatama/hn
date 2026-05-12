@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { useGetTopItemsQuery } from '@/store/api/hn';
 import HNItemComp from '@/components/HNItemComp';
 
 type HNItemListProps = {
-   
+
   className?: string;
   page: number;
 };

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -20,7 +20,7 @@ export default function HomePage() {
     currentPage = parseInt(pageParam, 10);
   }
 
-  return(
+  return (
     <>
       <HNItemList page={currentPage} />
     </>

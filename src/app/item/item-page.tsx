@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Parser } from 'html-to-react';
 import { useSearchParams } from 'next/navigation';
@@ -59,4 +59,3 @@ export default function Item() {
     </>
   );
 }
-

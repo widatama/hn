@@ -8,7 +8,7 @@ import HNCommentList from '@/components/HNCommentList';
 import type { HNItem } from '@/types/hn';
 
 type HNCommentCompProps = {
-   
+
   className?: string;
   hnComment: HNItem;
 };
@@ -64,14 +64,16 @@ export default function HNCommentComp({ className = '', hnComment }: HNCommentCo
     }
   }
 
-  const contentBlock = collapsed ? null : (
-    <>
-      <div className="hn-item-text tw:overflow-auto">
-        {content}
-      </div>
-      {childrenBlock}
-    </>
-  );
+  const contentBlock = collapsed
+    ? null
+    : (
+        <>
+          <div className="hn-item-text tw:overflow-auto">
+            {content}
+          </div>
+          {childrenBlock}
+        </>
+      );
 
   return (
     <div className={clsx(className)}>

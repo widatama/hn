@@ -6,10 +6,10 @@ const { Suspense } = React;
 
 export const metadata = {
   title: process.env.NEXT_PUBLIC_APP_TITLE,
-}
+};
 
 export default function Page() {
-  return(
+  return (
     <Suspense>
       <ItemPage></ItemPage>
     </Suspense>

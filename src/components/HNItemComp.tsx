@@ -49,7 +49,7 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
           ☍
         </Link>
       </span>
-    )
+    );
   }
 
   return (

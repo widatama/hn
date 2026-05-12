@@ -8,7 +8,7 @@ export const metadata = {
   icons: {
     icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.png`,
   },
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

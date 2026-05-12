@@ -6,7 +6,7 @@ import TimeAgo from 'react-timeago';
 import type { HNUser } from '@/types/hn';
 
 type HNUserCompProps = {
-   
+
   className?: string;
   hnUser: HNUser;
 };
