@@ -40,7 +40,9 @@ export default function parseHnContent(html: string): React.ReactNode {
 
         return (
           <React.Fragment key={index}>
-            <Link href={localHref} title="Open in HN Reader">{isPlainTextUrl ? `${window.location.origin}${localHref}` : children}</Link>
+            <Link href={`${window.location.origin}${localHref}`} title="Open in HN Reader">
+              {isPlainTextUrl ? `${window.location.origin}${localHref}` : children}
+            </Link>
             <Link href={absoluteHref} target="_blank" rel="noopener noreferrer" className="tw:ml-2 tw:!no-underline" title="Open in original HN">
               ↗
             </Link>
