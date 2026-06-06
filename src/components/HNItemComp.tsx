@@ -44,9 +44,9 @@ export default function HNItemComp({ className = '', hnItem }: HNItemCompProps) 
   let upstreamLinkBlock = null;
   if ('itemUpstreamUrl' in hnItem && typeof hnItem.itemUpstreamUrl === 'string') {
     upstreamLinkBlock = (
-      <span className="tw:ml-3 tw:font-bold">
+      <span className="tw:ml-1 tw:font-bold">
         <Link href={hnItem.itemUpstreamUrl} title="Open in original HN">
-          ☍
+          ↗
         </Link>
       </span>
     );

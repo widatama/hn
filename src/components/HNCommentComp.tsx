@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { Parser } from 'html-to-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import TimeAgo from 'react-timeago';
 
 import HNCommentList from '@/components/HNCommentList';
 import type { HNItem } from '@/types/hn';
+import parseHnContent from '@/utils/parseHnContent';
 
 type HNCommentCompProps = {
 
@@ -14,7 +14,7 @@ type HNCommentCompProps = {
 };
 
 export default function HNCommentComp({ className = '', hnComment }: HNCommentCompProps) {
-  const content = hnComment.text ? Parser().parse(hnComment.text) : '';
+  const content = hnComment.text ? parseHnContent(hnComment.text) : '';
   const [collapsed, setCollapsed] = useState(false);
   const [childrenCollapsed, setChildrenCollapsed] = useState(true);
 
