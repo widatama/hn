@@ -10,7 +10,9 @@ type HNCommentListProps = {
   hnCommentIds: number[];
 };
 
-export default function HNCommentList({ className = '', hnCommentIds = [] }: HNCommentListProps) {
+const emptyArray: number[] = [];
+
+export default function HNCommentList({ className = '', hnCommentIds = emptyArray }: HNCommentListProps) {
   const {
     data: hnComments = [],
     error,
